@@ -1,0 +1,5 @@
+tdediscspec    4            5e-3     100.0    diskmodel   add     0        1
+Rp             1e12cm       1        0.01     0.1         100     1000     1e-2
+Tp             1e5K         1        0.01     0.1         100     1000     1e-2
+gamma          " "          0.51     0.50     0.50        1.50    1.50     1e-2
+Dmpc           Mpc          100      1.0      1.0         1e4     1e4      1e-1
