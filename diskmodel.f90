@@ -1,4 +1,54 @@
+!A Fortran90 subroutine which returns the X-ray spectrum resulting from a cool (kT < 0.3 keV) accretion disc.  
+!Implimentation of the model from the MNRAS Letter "Tidal disruption event discs are larger than they seem:
+!removing systematic biases in TDE X-ray spectral modelling", Andrew Mummery, 2021. 
+!
+! IF YOU USE THIS MODEL IN PUBLISHED WORK YOU MUST CITE: Mummery, A., 2021, MNRAS, 
+! arXiv:XXXX.XXXXX
+!
+!
+!The following parameters are required for model
+!input:
+!    Rp - Radius at which disc temperature peaks, in units of 10^12 cm. 
+!    Tp - Physical peak disc temperature, in units of 10^5 Kelvin. 
+!    gamma - dimensionless and restricted to the range ~ (1/2, 3/2). 
+!    D_mpc - the source-observer distance, in units of Mpc. 
+!
+!output from model:
+!    n(E)dE - The observed accretion disc spectrum, in units of photons/s/cm^2 
+!
+!Notes:
+!    The parameter Rp is related to the physical size of the disc (R0) approximately by Rp = R0 \sqrt{cos\theta},
+!    where \theta is the disc-observer inclination angle (See published letter for more detail).
+!
+!    Theoretical values for gamma: 
+!        gamma = 1/2 for a vanishing ISCO stess disc observed face on 
+!        gamma = 1 for a vanishing ISCO stess disc observed edge on 
+!        gamma = 1 for a finite ISCO stess disc observed face on 
+!        gamma = 3/2 for a finite ISCO stess disc observed edge on 
+!
+!    This function makes no assumption about the properties of the disc's radial temperature profile, other than 
+!    that each disc radius emits like a colour-corrected blackbody, and that some temperature maximum Tp exists 
+!    within the disc. 
+!
+!Author: 
+!    Andrew Mummery, 
+!    Oxford University Astrophysics,
+!    andrew.mummery@wadham.ox.ac.uk
+!
+!Paper:
+!    "Tidal disruption event discs are larger than they seem: removing systematic biases in TDE X-ray spectral modelling"
+!    Andrew Mummery, Oxford University Astrophysics.
+!    Submitted to MNRAS, June 2021. Accepted: July 2021. 
+!    arXiv:XXXX.XXXXX
+!
+!git repo:
+!    https://github.com/andymummeryastro/TDEdiscXraySpectrum
+!
+!
 program wrapper  
+! The wrapper program allows the user to run this model in the terminal. 
+! This may be useful for outputting standard spectra and comparing models.
+! The model used by XSPEC is the below subroutine 'diskmodel'.
   implicit none
   integer ne,i,ifl
   parameter (ne=6000)
@@ -51,22 +101,6 @@ subroutine diskmodel(ear,ne,param,ifl,photar)
 !This model therefore represents a more agnostic approach to modelling TDE X-ray spectra, 
 !assuming only that the each disc radius emits like a colour-corrected blackbody, 
 !and that there exists some temperature maximum within the accretion disc. 
-!
-!Author: 
-!    Andrew Mummery, 
-!    Oxford University Astrophysics,
-!    andrew.mummery@wadham.ox.ac.uk
-!
-!Paper:
-!    "Tidal disruption event discs are larger than they seem: removing systematic biases in TDE X-ray spectral modelling"
-!    Andrew Mummery, Oxford University Astrophysics.
-!    Submitted to MNRAS, June 2021. Accepted: July 2021. 
-!    arXiv:XXXX.XXXXX
-!
-!git repo:
-!    https://github.com/andymummeryastro/TDEdiscXraySpectrum
-!
-!
   implicit none
   integer ne,ifl,i
   real ear(0:ne),param(4),photar(ne)
