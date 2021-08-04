@@ -146,7 +146,7 @@ subroutine diskmodel(ear,ne,param,ifl,photar)
   do i = 1,ne
     E        = 0.5 * ( ear(i) + ear(i-1) )
     dE       = ear(i) - ear(i-1)
-    ho = (1 + xi2 * (fc*Ep)/E + xi3 * ((fc*Ep)/E)**2)!Higher order corrections. 
+    ho = (1.0 + xi2 * (fc*Ep)/E + xi3 * ((fc*Ep)/E)**2)!Higher order corrections. 
     fo = 4.0*pi/(fc**4) * xi1 * E**2 * (fc*Ep/E)**gamma * exp(-E/(fc*Ep))!Leading order, neglecting amplitude. 
     photar(i) = amp * fo * ho * dE!Spectrum is amplitude * first order * higher order corrections * dE
   end do
