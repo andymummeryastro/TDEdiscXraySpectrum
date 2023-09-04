@@ -11,7 +11,7 @@ removing systematic biases in TDE X-ray spectral modelling", Andrew Mummery, 202
 * diskmodel.f90 contains the actual fortran implementation of the model 
 * diskmodel.f90 will need to be compiled. This can be done with e.g., the terminal command "gfortran diskmodel.f90"
 * See https://heasarc.gsfc.nasa.gov/xanadu/xspec/manual/XSappendixLocal.html for more information on how to load the TDE disc model into XSPEC
-* For any questions about the model, please email andrew.mummery@wadham.ox.ac.uk 
+* For any questions about the model, please email andrew.mummery@physics.ox.ac.uk 
 * If you use this model in published work you must cite: Mummery, A., 2021, MNRAS, 
 ### Python implimentation
 * Also included for ease of plotting and analysis
